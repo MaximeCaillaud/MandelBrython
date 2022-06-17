@@ -24,7 +24,7 @@ def suitey(x, y, cy):
 
 
 def distom(x, y):
-    om = ((x ** 2) + (y ** 2))
+    om = x ** 2 + y ** 2
     return om
 
 
@@ -56,8 +56,8 @@ if __name__ == "__main__":
     cs = pointc(2)
     cvalide = []
     for c in cs:
-        x = int(c[0]*1000)
-        y = int(c[1]*1000)
+        x = int(c[0]*1000+2000)
+        y = int(c[1]*1000+2000)
         if isMandelbrot(c):
             cvalide.append(c)
             pixels[x, y] = (255, 0, 0)
