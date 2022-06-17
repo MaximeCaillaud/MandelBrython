@@ -1,4 +1,4 @@
-#from PIL import Image
+from PIL import Image
 
 
 def pointc(ind=1):
@@ -51,19 +51,19 @@ def isMandelbrot(c):
 
 
 if __name__ == "__main__":
-    #img = Image.new('RGB', (4000, 4000))
-    #pixels = img.load()
+    img = Image.new('RGB', (4000, 4000))
+    pixels = img.load()
     cs = pointc(2)
     cvalide = []
     for c in cs:
-        x = int(c[0]*1000+2000)
-        y = int(c[1]*1000+2000)
+        x = int(c[0]*1000)
+        y = int(c[1]*1000)
         if isMandelbrot(c):
             cvalide.append(c)
-            #pixels[x, y] = (255, 255, 255)
+            pixels[x, y] = (255, 0, 0)
 
     #fichier = open("cvalide.txt", "w")
     #fichier.write(str(cvalide))
 
-    #img.show()
+    img.show()
 
