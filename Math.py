@@ -50,10 +50,10 @@ def isMandelbrot(c):
 
 
 if __name__ == "__main__":
+    print("0%")
     img = Image.new('RGB', (45000, 45000))
     c = (-2, -2)
     pixels = img.load()
-    print("0%")
     while c != (2, 2):
         x = int(c[0]*10000+20000)
         y = int(c[1]*10000+20000)
