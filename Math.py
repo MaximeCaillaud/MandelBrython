@@ -1,40 +1,13 @@
-import sys
-
 from PIL import Image
-import json
 
 
-def pointc(indy,indx):
-    tabc = []
-    x = -2.0001
-    while x < indx:
+def pointc(x, y):
+    if y == 2:
         x = round(x + 0.0001, 4)
-        y = -2.0001
-        while y < indy:
-            y = round(y + 0.0001, 4)
-            tabc.append((int(x*1000+2000), int(y*1000+2000)))
-    return tabc
-
-
-def pointcvalide(ind=1):
-    cx = 2.0001
-    while cx > -ind:
-        cx = round(cx - 0.0001, 4)
-        cy = 2.0001
-        while cy > -ind:
-            cy = round(cy - 0.0001, 4)
-            x = 0
-            y = 0
-            i = 0
-            while distom(x, y) < 4 and i < 50:
-                xy = suite(x, y, cx, cy)
-                x = xy[0]
-                y = xy[1]
-                i += 1
-            if i == 50:
-                f = open("cvalide.txt", "a")
-                f.write(str((x, y)) + ",")
-    return
+        y = -2
+    else:
+        y = round(y + 0.0001, 4)
+    return x, y
 
 
 def suitex(x, y, cx):
@@ -77,17 +50,19 @@ def isMandelbrot(c):
 
 
 if __name__ == "__main__":
-    img = Image.new('RGB', (4000, 4000))
+    img = Image.new('RGB', (45000, 45000))
+    c = (-2, -2)
     pixels = img.load()
-    cs = pointc(2, 2)
-    cvalide = []
-    for c in cs:
-        x = int(c[0])
-        y = int(c[1])
+    print("0%")
+    while c != (2, 2):
+        x = int(c[0]*10000+20000)
+        y = int(c[1]*10000+20000)
+        pct1 = int((c[0]+2)*100/4)
         if isMandelbrot(c):
-            cvalide.append(c)
             pixels[x, y] = (255, 255, 255)
-    fichier = open("cvalide.txt", "w")
-    fichier.write(str(cvalide))
+        c = pointc(c[0], c[1])
+        pct2 = int((c[0] + 2) * 100 / 4)
+        if pct1 != pct2:
+            print(str(pct2)+"%")
     img.show()
 
