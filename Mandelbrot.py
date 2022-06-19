@@ -9,6 +9,7 @@ def pointc(x, y, pas=0.002, arrondi=3):
         y = round(y + pas, arrondi)
     return x, y
 
+
 def pointczoom(x, y, pas=0.002, arrondi=3, minz =-0.1, maxz=0.1):
     if y == maxz:
         x = round(x + pas, arrondi)
@@ -42,7 +43,7 @@ def suite(x, y, cx, cy):
 
 
 def isMandelbrot(c):
-    MAXIT = 50
+    MAXIT = 500
     x = 0
     y = 0
     i = 0
@@ -57,7 +58,7 @@ def isMandelbrot(c):
         return False
 
 
-def complet(taille=4000,pas=0.002,arrondi=3):
+def complet(taille=4000, pas=0.001, arrondi=3):
     print("0%")
     img = Image.new('RGB', (taille, taille))
     c = (-2, -2)
@@ -75,14 +76,13 @@ def complet(taille=4000,pas=0.002,arrondi=3):
     return img
 
 
-def zoom(taille=4000, pas=0.00005, arrondi=5, zonex=(-2, -1.6),zoney=(-0.2, 0.2)):
+def zoom(taille=5000, pas=0.0000001, arrondi=7, zonex=(-1.7115, -1.711), zoney=(-0.00025, 0.00025)):
     img = Image.new('RGB', (taille, taille))
     c = (zonex[0], zoney[0])
     pixels = img.load()
     while c != (zonex[1], zoney[1]):
-        print(c)
-        x = int(c[0] * (taille / 4) + (taille / 2))
-        y = int(c[1] * (taille / 4) + (taille / 2))
+        x = int(abs((zonex[0]-c[0]) * 10000000))
+        y = int(abs((zoney[0]-c[1]) * 10000000))
         if isMandelbrot(c):
             print(x, y)
             pixels[x, y] = (255, 255, 255)
@@ -91,8 +91,8 @@ def zoom(taille=4000, pas=0.00005, arrondi=5, zonex=(-2, -1.6),zoney=(-0.2, 0.2)
 
 
 if __name__ == "__main__":
+    #complet().show()
     zoom().show()
-    #buggé n'essaie pas
 
 
 
