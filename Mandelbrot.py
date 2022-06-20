@@ -91,7 +91,7 @@ def zoom(taille=5000, pas=0.0000001, arrondi=7, zonex=(-1.7115, -1.711), zoney=(
 
 
 if __name__ == "__main__":
-    #complet().show()
+    complet().show()
     zoom().show()
 
 
